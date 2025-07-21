@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Sets the width of the viewport to the width of the device's screen. Also, set zoom to 1.0 on first load-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Pad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Note Pad</h1>
+
+        <div class="note-form-section">
+            <h2>Add New Note</h2>
+            <form id="note-form">
+                <input type="text" id="note-title-input" placeholder="Note Title" required>
+                <textarea id="note-text-input" placeholder="Write your note here..." rows="5" required></textarea> <!-- Specifies visible number of lines in the text area (5).-->
+                <button type="submit">Create Note</button>
+            </form>
+        </div>
+        
+        <div class="notes-list-section">
+            <h2>Your Notes (Select to view and edit content)</h2>
+            <ul id="notes-list">  <!--Unordered list of notes-->
+                <li>Loading notes...</li>  <!--Feedback to user that notes wil be loaded, if there are notes to load-->
+            </ul>
+        </div>
+        <!--This div represents the modal window that appears when a user clicks on a note to view its details.-->
+        <div id="note-detail-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>  <!--&times;: The small "x" top right of modal window, used to close.-->
+                <h2 id="detail-note-title"></h2>   <!--Note title-->
+                <p id="detail-note-id"></p>        <!--Note id-->
+                <textarea id="detail-note-text" rows="10" readonly></textarea>     <!--Note text. 10 rows deep-->
+                <div class="detail-actions">
+                    <button id="edit-button" class="action-button edit">Edit</button>         <!--Edit button, appears on load of modal-->
+                    <button id="delete-button" class="action-button delete">Delete</button>   <!--Delete button, appears on load of modal-->
+                    <button id="save-edit-button" class="action-button save" style="display:none;">Save</button>     <!--Save button, appears after edit button selected-->
+                    <button id="cancel-edit-button" class="action-button cancel" style="display:none;">Cancel</button>       <!--Cancel button, appears after edit button selected-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

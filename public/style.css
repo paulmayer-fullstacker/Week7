@@ -1,0 +1,278 @@
+:root {
+    /* Dull text and backgrounds */
+    --text-dark: #2c3e50;
+    --text-medium: #34495e;
+    --text-light: #777;
+    --text-lighter: #888;
+    --background-light: #e9eff5;
+    --background-white: #ffffff;
+    --border-light: #ccd6e0;
+    --border-lighter: #e0e6ed;
+    --border-lightest: #eee;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+
+    /* Action Colours */
+    --action-blue: #3498db;      /* Create btn */
+    --action-blue-dark: #2980b9; /* Create btn hover */
+    --action-red: #dc3545;       /* Close/Delete btn */
+    --action-red-dark: #c82333;  /* Close/Delete btn hover */
+    --action-yellow: #ffc107;    /* Edit btn */
+    --action-yellow-dark: #e0a800;  /* Edit btn hover */
+    --action-blue: #007bff;         /* Save btn */
+    --action-blue-dark: #0069d9;    /* Save btn hover */
+    --action-grey: #6c757d;         /* Cancel btn */
+    --action-grey-dark: #5a6268;    /* Cancel btn hover */
+    --background-grey-light: #f8f9fa;   /* Note list item */
+    --background-grey-lighter: #eef3f8; /* Note list item hover */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background-color: var(--background-light);
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--background-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-medium);
+    text-align: left;
+    position: relative; /* For modal positioning */
+}
+
+h1 {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: var(--text-medium);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-lightest);
+    padding-bottom: 5px;
+}
+
+.note-form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.note-form-section input[type="text"],
+.note-form-section textarea {
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.note-form-section textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.note-form-section button {
+    padding: 12px 25px;
+    border: none;
+    background: var(--action-blue);
+    color: var(--background-white);
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+    width: auto;
+}
+
+.note-form-section button:hover {
+    background: var(--action-blue-dark);
+}
+
+.notes-list-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.notes-list-section li {
+    background: var(--background-grey-light);
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-lighter);
+    box-shadow: 0 2px 5px var(--shadow-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover effect for clickable Note list items */
+.notes-list-section li:hover {
+    background-color: var(--background-grey-lighter);
+    transform: translateY(-2px);
+}
+
+.notes-list-section li .note-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.notes-list-section li .note-title {
+    font-weight: bold;
+    color: var(--text-dark);
+    font-size: 1.1em;
+    margin-bottom: 4px;
+}
+
+.notes-list-section li .note-id {
+    font-size: 0.8em;
+    color: var(--text-light);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--shadow-dark);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--background-white);
+    margin: auto;
+    padding: 30px;
+    border: 1px solid var(--text-lighter);
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px var(--shadow-dark);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.close-button {
+    color: var(--action-red);
+    float: right;
+    font-size: 38px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--action-red-dark);
+    text-decoration: none;
+}
+
+#detail-note-title {
+    font-size: 1.8em;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#detail-note-id {
+    font-size: 0.9em;
+    color: var(--text-lighter);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#detail-note-text {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color: var(--background-white); 
+}
+
+.detail-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.action-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.action-button.edit {
+    background-color: var(--action-yellow);
+    color: var(--text-medium);
+}
+
+.action-button.edit:hover {
+    background-color: var(--action-yellow-dark);
+}
+
+.action-button.delete {
+    background-color: var(--action-red);
+    color: var(--background-white);
+}
+
+.action-button.delete:hover {
+    background-color: var(--action-red-dark);
+}
+
+.action-button.save {
+    background-color: var(--action-blue);
+    color: var(--background-white);
+}
+.action-button.save:hover {
+    background-color: var(--action-blue-dark);
+}
+
+.action-button.cancel {
+    background-color: var(--action-grey);
+    color: var(--background-white);
+}
+.action-button.cancel:hover {
+    background-color: var(--action-grey-dark);
+}
+
+/* Animation for modal. Smoothly fade in from being invisible to fully visible, while simultaneously moving downwards by 20 pixels,
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+} */
