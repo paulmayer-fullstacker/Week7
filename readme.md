@@ -4,6 +4,8 @@
 
 Herewith my submission for Week-7's challenge: a full-stack 'Note-Taking' application, using Node and Express. The note-taking application allows the user to: create new notes, view existing notes, then edit or delete a Note.
 
+---
+
 ## The Solution:
 
 The solution comprises an Express server (backend), serving static frontend files and providing a RESTful API managing the Notes. The server serves static files from a directory named 'public', making the frontend (HTML, CSS and JS files), directly accessible to clients. The server provides a set of API endpoints for performing CRUD (Create, Read, Update, Delete) operations on Notes. The Notes being persisted in a data.json file on the server's file system.
